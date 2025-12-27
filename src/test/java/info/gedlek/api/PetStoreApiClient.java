@@ -7,6 +7,7 @@ import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.RestAssured.given;
@@ -24,13 +25,18 @@ public class PetStoreApiClient {
                 .build();
     }
 
-    @Step("Create a new pet id: {pet.id}")
-    public Pet createPet(Pet pet) {
+    @Step("Send POST /pet request")
+    public Response createPetResponse(Object body) {
         return given()
                 .spec(requestSpec)
-                .body(pet)
+                .body(body)
                 .when()
-                .post("/pet")
+                .post("/pet");
+    }
+
+    @Step("Create a new pet id: {pet.id}")
+    public Pet createPet(Pet pet) {
+        return createPetResponse(pet)
                 .then()
                 .log().ifError()
                 .statusCode(200)
@@ -38,24 +44,34 @@ public class PetStoreApiClient {
                 .as(Pet.class);
     }
 
-    @Step("Get pet by ID: {petId}")
-    public Pet getPetById(Long petId) {
+    @Step("Send GET /pet/{petId} request")
+    public Response getPetByIdResponse(Long petId) {
         return given()
                 .spec(requestSpec)
                 .when()
-                .get("/pet/" + petId)
+                .get("/pet/" + petId);
+    }
+
+    @Step("Get pet by ID: {petId}")
+    public Pet getPetById(Long petId) {
+        return getPetByIdResponse(petId)
                 .then()
                 .statusCode(200)
                 .extract()
                 .as(Pet.class);
     }
 
-    @Step("Delete pet by ID: {petId}")
-    public void deletePet(Long petId) {
-        given()
+    @Step("Send DELETE /pet/{petId} request")
+    public Response deletePetResponse(Long petId) {
+        return given()
                 .spec(requestSpec)
                 .when()
-                .delete("/pet/" + petId)
+                .delete("/pet/" + petId);
+    }
+
+    @Step("Delete pet by ID: {petId}")
+    public void deletePet(Long petId) {
+        deletePetResponse(petId)
                 .then()
                 .statusCode(200);
     }
