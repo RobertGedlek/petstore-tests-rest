@@ -1,6 +1,7 @@
 package info.gedlek.api;
 
 import info.gedlek.model.Pet;
+import info.gedlek.utils.Configuration;
 import io.qameta.allure.Step;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -10,13 +11,13 @@ import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.RestAssured.given;
 
-public class PetApiClient {
+public class PetStoreApiClient {
 
     private final RequestSpecification requestSpec;
 
-    public PetApiClient() {
+    public PetStoreApiClient() {
         this.requestSpec = new RequestSpecBuilder()
-                .setBaseUri("https://petstore.swagger.io/v2")
+                .setBaseUri(Configuration.getBaseUri())
                 .setContentType(ContentType.JSON)
                 .addFilter(new AllureRestAssured())
                 .log(LogDetail.ALL)
