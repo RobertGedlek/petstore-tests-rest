@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static info.gedlek.asserters.PetAsserter.assertThat;
 
+@DisplayName("Pet API tests")
 class PetApiTest {
 
     private final PetStoreApiClient petStoreApiClient = new PetStoreApiClient();
