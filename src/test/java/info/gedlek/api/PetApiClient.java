@@ -1,6 +1,7 @@
 package info.gedlek.api;
 
 import info.gedlek.model.Pet;
+import io.qameta.allure.Step;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
@@ -20,6 +21,7 @@ public class PetApiClient {
                 .build();
     }
 
+    @Step("Create a new pet id: {pet.id}")
     public Pet createPet(Pet pet) {
         return given()
                 .spec(requestSpec)
@@ -33,6 +35,7 @@ public class PetApiClient {
                 .as(Pet.class);
     }
 
+    @Step("Get pet by ID: {petId}")
     public Pet getPetById(Long petId) {
         return given()
                 .spec(requestSpec)
@@ -44,6 +47,7 @@ public class PetApiClient {
                 .as(Pet.class);
     }
 
+    @Step("Delete pet by ID: {petId}")
     public void deletePet(Long petId) {
         given()
                 .spec(requestSpec)
