@@ -1,16 +1,11 @@
-# Compiled class file
+# --- Java & Compile ---
 *.class
-
-# Log file
 *.log
-
-# BlueJ files
 *.ctxt
-
-# Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# Package Files #
+# --- Package Files ---
+# Ignorujemy paczki, ale NIE ignorujemy wrappera gradle (ważne!)
 *.jar
 *.war
 *.nar
@@ -18,7 +13,28 @@
 *.zip
 *.tar.gz
 *.rar
+# Wyjątek: chcemy wrapper jar w repozytorium
+!gradle/wrapper/gradle-wrapper.jar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# --- Gradle Build ---
+.gradle/
+build/
+# UWAGA: Usunąłem stąd /gradlew i /gradlew.bat - one MUSZĄ być w repo!
+
+# --- IntelliJ IDEA (Tego brakowało) ---
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# --- Mac OS (Jesteś na Macu, więc to konieczne) ---
+.DS_Store
+
+# --- Allure Reports ---
+allure-results/
+allure-report/
+
+# --- Crash logs ---
 hs_err_pid*
 replay_pid*
