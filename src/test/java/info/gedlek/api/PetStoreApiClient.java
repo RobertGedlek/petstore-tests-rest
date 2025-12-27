@@ -17,7 +17,7 @@ public class PetStoreApiClient {
 
     public PetStoreApiClient() {
         this.requestSpec = new RequestSpecBuilder()
-                .setBaseUri(Configuration.getBaseUri())
+                .setBaseUri(Configuration.BASE_URI.get())
                 .setContentType(ContentType.JSON)
                 .addFilter(new AllureRestAssured())
                 .log(LogDetail.ALL)

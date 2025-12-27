@@ -1,11 +1,13 @@
 package info.gedlek.utils;
 
-import lombok.extern.slf4j.Slf4j; // Opcjonalnie do logowania
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class Configuration {
+public enum Configuration {
+
+    BASE_URI("api.base.uri"),
+    ;
 
     private static final Properties properties = new Properties();
 
@@ -20,7 +22,12 @@ public class Configuration {
         }
     }
 
-    public static String getBaseUri() {
-        return System.getProperty("api.base.uri", properties.getProperty("api.base.uri"));
+    private final String key;
+
+    Configuration(String key) {
+        this.key = key;
+    }
+    public  String get() {
+        return properties.getProperty(key);
     }
 }
