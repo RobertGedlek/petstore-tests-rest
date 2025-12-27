@@ -43,6 +43,8 @@ dependencies {
     testImplementation 'io.qameta.allure:allure-rest-assured:2.25.0'
 
     testImplementation 'ch.qos.logback:logback-classic:1.2.13'
+
+    testImplementation 'net.datafaker:datafaker:2.1.0'
 }
 
 def swaggerFile = layout.buildDirectory.file("swagger-downloaded.json").get().asFile
