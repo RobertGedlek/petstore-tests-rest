@@ -69,6 +69,10 @@ tasks.named('openApiGenerate') {
     dependsOn 'downloadSwagger'
 }
 
+tasks.named('compileJava') {
+    dependsOn 'openApiGenerate'
+}
+
 sourceSets {
     main {
         java {
