@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static info.gedlek.asserters.ResponseAsserter.assertThatResponse;
 
 @DisplayName("Pet Endpoint - Validation & Error Handling")
-class PetValidationTest extends BaseTest {
+public class PetValidationTest extends BaseTest {
 
     @Test
     @Negative
