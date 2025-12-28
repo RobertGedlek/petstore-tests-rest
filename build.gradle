@@ -112,6 +112,14 @@ test {
         file("build/allure-results").deleteDir()
         println "🧹 Allure results directory cleaned!"
     }
+
+    testLogging {
+        showStandardStreams = true
+        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+    }
+
+    exclude '**/suites/**'
 }
 
 configurations.all {
