@@ -1,6 +1,5 @@
 package info.gedlek.tests;
 
-import info.gedlek.model.Category;
 import info.gedlek.model.Pet;
 import info.gedlek.utils.TestDataGenerator;
 import org.junit.jupiter.api.DisplayName;
@@ -20,14 +19,14 @@ class PetApiTest extends BaseTest {
         var pet = TestDataGenerator.generateDefaultPet();
 
         // when
-        var createdPet = petApiClient.createPet(pet);
+        var createdPet = petStoreApiClient.createPet(pet);
 
         // then
         assertThat(createdPet)
                 .toHaveName(pet.getName())
                 .toHaveStatus(pet.getStatus());
 
-        var fetchedPet = petApiClient.getPetById(pet.getId());
+        var fetchedPet = petStoreApiClient.getPetById(pet.getId());
 
         assertThat(fetchedPet)
                 .toHaveId(pet.getId())
@@ -46,7 +45,7 @@ class PetApiTest extends BaseTest {
         pet.setStatus(status);
 
         // when
-        var createdPet = petApiClient.createPet(pet);
+        var createdPet = petStoreApiClient.createPet(pet);
 
         // then
         assertThat(createdPet)

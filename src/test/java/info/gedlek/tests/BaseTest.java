@@ -1,15 +1,16 @@
 package info.gedlek.tests;
 
 import info.gedlek.api.PetStoreApiClient;
+import info.gedlek.utils.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.TestInstance;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class BaseTest {
-    protected PetStoreApiClient petApiClient;
+    protected PetStoreApiClient petStoreApiClient;
 
     @BeforeAll
     void setup() {
-        petApiClient = new PetStoreApiClient();
+        petStoreApiClient = new PetStoreApiClient(Configuration.BASE_URI.get());
     }
 }

@@ -1,7 +1,6 @@
 package info.gedlek.api;
 
 import info.gedlek.model.Pet;
-import info.gedlek.utils.Configuration;
 import io.qameta.allure.Step;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -16,9 +15,9 @@ public class PetStoreApiClient {
 
     private final RequestSpecification requestSpec;
 
-    public PetStoreApiClient() {
+    public PetStoreApiClient(String baseUri) {
         this.requestSpec = new RequestSpecBuilder()
-                .setBaseUri(Configuration.BASE_URI.get())
+                .setBaseUri(baseUri)
                 .setContentType(ContentType.JSON)
                 .addFilter(new AllureRestAssured())
                 .log(LogDetail.ALL)

@@ -16,7 +16,7 @@ class PetValidationTest extends BaseTest {
         long nonExistentId = -99999L;
 
         // when
-        var response = petApiClient.getPetByIdResponse(nonExistentId);
+        var response = petStoreApiClient.getPetByIdResponse(nonExistentId);
 
         // then
         assertThatResponse(response)
@@ -32,7 +32,7 @@ class PetValidationTest extends BaseTest {
         long randomId = TestDataGenerator.getRandomPetId();
 
         // when
-        var response = petApiClient.deletePetResponse(randomId);
+        var response = petStoreApiClient.deletePetResponse(randomId);
 
         // then
         assertThatResponse(response)
@@ -48,7 +48,7 @@ class PetValidationTest extends BaseTest {
                 """;
 
         // when
-        var response = petApiClient.createPetResponse(brokenJson);
+        var response = petStoreApiClient.createPetResponse(brokenJson);
 
         // then
         assertThatResponse(response)
