@@ -43,7 +43,7 @@ dependencies {
     testImplementation 'io.qameta.allure:allure-junit5:2.25.0'
     testImplementation 'io.qameta.allure:allure-rest-assured:2.25.0'
 
-    testImplementation 'ch.qos.logback:logback-classic:1.2.13'
+    testImplementation 'ch.qos.logback:logback-classic:1.5.13'
 
     testImplementation 'net.datafaker:datafaker:2.1.0'
 }
