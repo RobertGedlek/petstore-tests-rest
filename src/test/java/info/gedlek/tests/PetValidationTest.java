@@ -1,6 +1,5 @@
 package info.gedlek.tests;
 
-import info.gedlek.api.PetStoreApiClient;
 import info.gedlek.utils.TestDataGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,9 +7,7 @@ import org.junit.jupiter.api.Test;
 import static info.gedlek.asserters.ResponseAsserter.assertThatResponse;
 
 @DisplayName("Pet Endpoint - Validation & Error Handling")
-class PetValidationTest {
-
-    private final PetStoreApiClient petApiClient = new PetStoreApiClient();
+class PetValidationTest extends BaseTest {
 
     @Test
     @DisplayName("GET /pet/{id} - should return 404 for non-existent pet")
@@ -47,8 +44,8 @@ class PetValidationTest {
     void shouldReturn400WhenInputIsInvalid() {
         // given
         var brokenJson = """
-                        { "id": 123, "name": 
-                        """;
+                { "id": 123, "name": 
+                """;
 
         // when
         var response = petApiClient.createPetResponse(brokenJson);

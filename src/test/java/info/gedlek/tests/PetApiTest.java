@@ -9,9 +9,7 @@ import org.junit.jupiter.api.Test;
 import static info.gedlek.asserters.PetAsserter.assertThat;
 
 @DisplayName("Pet API tests")
-class PetApiTest {
-
-    private final PetStoreApiClient petStoreApiClient = new PetStoreApiClient();
+class PetApiTest extends  BaseTest {
 
     @Test
     @DisplayName("POST /pet - should create a new pet with random data")
@@ -25,14 +23,14 @@ class PetApiTest {
         pet.setCategory(category);
 
         // when
-        var createdPet = petStoreApiClient.createPet(pet);
+        var createdPet = petApiClient.createPet(pet);
 
         // then
         assertThat(createdPet)
                 .toHaveName(pet.getName())
                 .toHaveStatus(pet.getStatus());
 
-        var fetchedPet = petStoreApiClient.getPetById(pet.getId());
+        var fetchedPet = petApiClient.getPetById(pet.getId());
 
         assertThat(fetchedPet)
                 .toHaveId(pet.getId())
