@@ -105,6 +105,12 @@ sourceSets {
 
 test {
     useJUnitPlatform()
+
+    doFirst {
+        //remove old allure results
+        file("build/allure-results").deleteDir()
+        println "🧹 Allure results directory cleaned!"
+    }
 }
 
 configurations.all {
