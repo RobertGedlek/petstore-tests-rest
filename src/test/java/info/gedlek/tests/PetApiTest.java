@@ -2,6 +2,7 @@ package info.gedlek.tests;
 
 import info.gedlek.model.Pet;
 import info.gedlek.utils.TestDataGenerator;
+import info.gedlek.utils.annotations.Positive;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,6 +14,7 @@ import static info.gedlek.asserters.PetAsserter.assertThat;
 class PetApiTest extends BaseTest {
 
     @Test
+    @Positive
     @DisplayName("POST /pet - should create a new pet with random data")
     void shouldCreateAndGetPet() {
         // given
@@ -38,6 +40,7 @@ class PetApiTest extends BaseTest {
 
 
     @ParameterizedTest(name = "Run #{index}: Create pet with status: {0}")
+    @Positive
     @EnumSource(Pet.StatusEnum.class)
     void shouldCreatePetWithDifferentStatuses(Pet.StatusEnum status) {
         // given

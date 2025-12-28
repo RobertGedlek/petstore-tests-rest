@@ -1,6 +1,7 @@
 package info.gedlek.tests;
 
 import info.gedlek.utils.TestDataGenerator;
+import info.gedlek.utils.annotations.Negative;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +11,7 @@ import static info.gedlek.asserters.ResponseAsserter.assertThatResponse;
 class PetValidationTest extends BaseTest {
 
     @Test
+    @Negative
     @DisplayName("GET /pet/{id} - should return 404 for non-existent pet")
     void shouldReturn404WhenPetNotFound() {
         // given
@@ -26,6 +28,7 @@ class PetValidationTest extends BaseTest {
     }
 
     @Test
+    @Negative
     @DisplayName("DELETE /pet/{id} - should return 404 when deleting non-existent pet")
     void shouldReturn404WhenDeletingNonExistentPet() {
         // given
@@ -40,6 +43,7 @@ class PetValidationTest extends BaseTest {
     }
 
     @Test
+    @Negative
     @DisplayName("POST /pet - should return 400 for invalid input")
     void shouldReturn400WhenInputIsInvalid() {
         // given
