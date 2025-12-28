@@ -76,8 +76,8 @@ After running tests (even if they fail), generate the visual report:
 
 ### 1. Meta-Annotations (Clean Code)
 Instead of using raw `@Tag("regression")` strings, we use custom annotations to group tests logically and avoid typos.
-* **`@Positive`**: Adds tags: `positive`, `smoke`, `regression`.
-* **`@Negative`**: Adds tags: `negative`, `validation`, `regression`.
+* **`@Positive`**: Adds tags: `positive`, `regression`.
+* **`@Negative`**: Adds tags: `negative`, `regression`.
 
 ### 2. API Client Object (`PetApiClient`)
 HTTP connection logic (GET, POST, DELETE) is separated from tests. Tests call business methods, e.g., `createPet()`, instead of building requests manually.
@@ -98,7 +98,7 @@ PetAsserter.assertThat(createdPet)
 ```
 
 ### 5. Base Test Class (`BaseTest`)
-Uses `Lifecycle.PER_CLASS` to manage shared configuration. It initializes the API Client and Faker once, providing them to all inheriting test classes.
+Uses `Lifecycle.PER_CLASS` to manage shared configuration. It initializes the API Client once
 
 ### 6. Model First (Code Generation)
 Classes like `Pet`, `Tag`, `Category` are generated "on the fly" into the `build/generated` directory using OpenAPI Generator. This ensures the code is always consistent with the live API documentation.
