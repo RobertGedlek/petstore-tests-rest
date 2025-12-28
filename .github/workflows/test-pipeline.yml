@@ -1,0 +1,42 @@
+name: Petstore Automation CI 🚀
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: ☕ Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: 🐘 Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: 🛠️ Build & Generate Swagger
+        run: ./gradlew clean compileTestJava
+
+      - name: 🟢 Run Positive/Smoke Tests
+        run: ./gradlew test -DincludeTags="smoke"
+
+      - name: 🔴 Run Negative/Validation Tests
+        if: success()
+        run: ./gradlew test -DincludeTags="validation"
+
+      - name: 📊 Upload Allure Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: build/allure-results
+          retention-days: 7
