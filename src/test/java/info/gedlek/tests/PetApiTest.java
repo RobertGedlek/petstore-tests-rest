@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.EnumSource;
 import static info.gedlek.asserters.PetAsserter.assertThat;
 
 @DisplayName("Pet API tests")
-class PetApiTest extends  BaseTest {
+class PetApiTest extends BaseTest {
 
     @Test
     @DisplayName("POST /pet - should create a new pet with random data")
@@ -43,7 +43,7 @@ class PetApiTest extends  BaseTest {
     }
 
 
-    @ParameterizedTest(name = "Run #{index}: Create pet with status ''{0}''")
+    @ParameterizedTest(name = "Run #{index}: Create pet with status: {0}")
     @EnumSource(Pet.StatusEnum.class)
     void shouldCreatePetWithDifferentStatuses(Pet.StatusEnum status) {
         // given
