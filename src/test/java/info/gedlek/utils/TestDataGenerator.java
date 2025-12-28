@@ -1,10 +1,11 @@
 package info.gedlek.utils;
 
+import info.gedlek.model.Category;
 import info.gedlek.model.Pet;
 import lombok.Getter;
 import net.datafaker.Faker;
 
-import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -64,18 +65,49 @@ public class TestDataGenerator {
         return faker.number().numberBetween(1, 101);
     }
 
+
     /**
-     * Generates a default {@link Pet} instance with random ID and name,
-     * status set to AVAILABLE, and a default photo URL.
+     * Generates a default Category object with random attributes.
+     * <p>
+     * The generated category will have:
+     * <ul>
+     *     <li>A random ID</li>
+     *     <li>A random name</li>
+     * </ul>
+     * </p>
      *
-     * @return a new {@link Pet} object with default test data
+     * @return a {@link Category} object populated with default random values.
+     */
+    public static Category generateDefaultCategory() {
+        var category = new Category();
+        category.setId((long) getRandomCategoryId());
+        category.setName(faker.animal().name());
+        return category;
+    }
+
+    /**
+     * Generates a default Pet object with random attributes.
+     * <p>
+     * The generated pet will have:
+     * <ul>
+     *     <li>A random ID</li>
+     *     <li>A random name</li>
+     *     <li>Status set to AVAILABLE</li>
+     *     <li>A randomly generated category</li>
+     * </ul>
+     * </p>
+     *
+     * @return a {@link Pet} object populated with default random values.
      */
     public static Pet generateDefaultPet() {
         Pet pet = new Pet();
         pet.setId(getRandomPetId());
-        pet.setName(getRandomPetName());
+        pet.setName(faker.dog().name());
         pet.setStatus(Pet.StatusEnum.AVAILABLE);
-        pet.setPhotoUrls(Collections.singletonList("http://url.com/photo"));
+
+        pet.setCategory(generateDefaultCategory());
+
+        pet.setPhotoUrls(List.of(faker.internet().url()));
         return pet;
     }
 }

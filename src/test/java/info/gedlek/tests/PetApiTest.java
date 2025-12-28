@@ -17,12 +17,7 @@ class PetApiTest extends BaseTest {
     @DisplayName("POST /pet - should create a new pet with random data")
     void shouldCreateAndGetPet() {
         // given
-        var category = new Category();
-        category.setId((long) TestDataGenerator.getRandomCategoryId());
-        category.setName(TestDataGenerator.getFaker().animal().name());
-
         var pet = TestDataGenerator.generateDefaultPet();
-        pet.setCategory(category);
 
         // when
         var createdPet = petApiClient.createPet(pet);
@@ -37,7 +32,7 @@ class PetApiTest extends BaseTest {
         assertThat(fetchedPet)
                 .toHaveId(pet.getId())
                 .toHaveName(pet.getName())
-                .toHaveCategory(category)
+                .toHaveCategory(pet.getCategory())
                 .toHavePhotoUrls(pet.getPhotoUrls())
                 .toHaveStatus(pet.getStatus());
     }
